@@ -1,0 +1,147 @@
+/*Container View*/
+div.EditorContainer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	padding-bottom: 4px;
+}
+
+
+/*Toolbar View*/
+div.EditorToolbar {
+	z-index: 1;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	height: 60px;
+	background-color: #fff;
+}
+
+div.EditorToolbar > div {
+	height: 100%;
+	align-items: center;
+	display: inline-flex;
+}
+
+button.EditorToolbarButton {
+	min-width: 32px;
+	height: 32px;
+	background-color: transparent;
+	border: none;
+}
+
+button.EditorToolbarButton > span {
+	-webkit-transition: all 200ms ease-in;
+	-webkit-transform: scale(1); 
+	-ms-transition: all 200ms ease-in;
+	-ms-transform: scale(1); 
+	-moz-transition: all 200ms ease-in;
+	-moz-transform: scale(1);
+	transition: all 200ms ease-in;
+	transform: scale(1);
+}
+
+button.EditorToolbarButton:hover {
+	background-color: #fefefe;
+	cursor: pointer;
+}
+
+button.EditorToolbarButton:hover > span,
+button.EditorToolbarButton.Active > span {
+	color: #009688;
+	box-shadow: 0px 0px 150px #000000;
+	z-index: 2;
+	-webkit-transition: all 200ms ease-in;
+	-webkit-transform: scale(1.5);
+	-ms-transition: all 200ms ease-in;
+	-ms-transform: scale(1.5);   
+	-moz-transition: all 200ms ease-in;
+	-moz-transform: scale(1.5);
+	transition: all 200ms ease-in;
+	transform: scale(1.5);
+}
+
+button.EditorToolbarButton:focus {
+	outline: none;
+}
+
+.EditorToolbarButtonTextLarge {
+	font-size: 15px;
+}
+
+.EditorToolbarButtonTextMedium {
+	font-size: 13px;
+}
+
+.EditorToolbarButtonTextSmall {
+	font-size: 11px;
+}
+
+.EditorToolbarDivider {
+	padding: 0 8px;
+}
+
+
+/*Editor View*/
+.Editor {
+	position: relative;
+	box-sizing: border-box;
+	padding-top: 60px;
+	height: 100%;
+	background-color: #fff;
+}
+
+
+/* Custom Formatting */
+
+/*Default Text*/
+div.Editor > .ql-container {
+	--x-height-multiplier: 0.35;
+	--baseline-multiplier: 0.179;
+	color: #000;
+	font-family: Georgia, Cambria, "Times New Roman", Times ,serif;
+	letter-spacing: .01rem;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 21px;
+	line-height: 1.58;
+	letter-spacing: -.003em;
+}
+
+/*Remove EM red color (for UIkit users)*/
+div.Editor > .ql-container > .ql-editor > p > em {
+	color: #000;
+}
+
+/*BlockQuotes*/
+div.Editor > .ql-container > .ql-editor > blockquote {
+	font-style: italic;
+	position: relative;
+	marign: 0;
+	padding: 30px 120px!important;
+	text-align: center;
+	font-size: 30px;
+}
+
+div.Editor > .ql-container > .ql-editor > blockquote:before {
+	top: 0;
+	left: 0;
+	content: "\201C";
+}
+
+div.Editor > .ql-container > .ql-editor > blockquote:before,
+div.Editor > .ql-container > .ql-editor > blockquote:after {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	font-size: 120px;
+	line-height: 1;
+}
+
+div.Editor > .ql-container > .ql-editor > .ql-syntax {
+	background-color: #fafafa;
+	padding: 8px;
+	border-radius: 3px;
+}
