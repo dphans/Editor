@@ -16,7 +16,7 @@ Editor using *fontawesome* to display icons into toolbar, so you need to import 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 ```
 
-2. Create element and implement just one line of code
+2. Create element and implement just code in-line!
 
 ```html
 <div id="MyEditor"></div>
@@ -26,7 +26,7 @@ Editor using *fontawesome* to display icons into toolbar, so you need to import 
 new Editor('MyEditor', {});
 ```
 
-3. Highlight syntax (option)
+3. Highlight syntax (optional)
 Import highlightjs, Editor will detect highlightjs and render automatically
 
 ```html
