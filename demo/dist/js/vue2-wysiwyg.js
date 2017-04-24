@@ -23685,189 +23685,138 @@ module.exports = {
 	defaultOptions: {
 		editorToolbarItems: [
 			{
-				type: 'button',
+				type: 'define',
 				title: 'Section',
-				content: {
-					class: 'fa fa-header EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'EditorToolbarButtonTextLarge', text: 'Sc' },
 				formatKey: 'header',
-				formatValue: '',
-				formatValues: ['1', '2', '3'],
-				formatDirection: 'prev'
+				formatForceLine: true,
+				formatValue: '2'
 			},
 			{
-				type: 'divider'
+				type: 'define',
+				title: 'Sub-section',
+				content: { class: 'EditorToolbarButtonTextMedium', text: 'Ss' },
+				formatKey: 'header',
+				formatForceLine: true,
+				formatValue: '3'
 			},
 			{
-				type: 'button',
+				type: 'define',
+				title: 'Normal',
+				content: { class: 'EditorToolbarButtonTextSmall', text: 'Bd' },
+				formatKey: 'header',
+				formatForceLine: true,
+				formatValue: ''
+			},
+			{ type: 'divider' },
+			{
+				type: 'toggle',
 				title: 'Bold',
-				content: {
-					class: 'fa fa-bold EditorToolbarButtonTextMedium'
-				},
-				formatKey: 'bold',
-				formatValue: 'toggle',
-				formatValues: [],
-				formatDirection: 'none'
+				content: { class: 'fa fa-bold EditorToolbarButtonTextMedium' },
+				formatKey: 'bold'
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Italic',
-				content: {
-					class: 'fa fa-italic EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-italic EditorToolbarButtonTextMedium' },
 				formatKey: 'italic',
-				formatValue: 'toggle',
-				formatValues: '',
-				formatDirection: 'none'
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Underline',
-				content: {
-					class: 'fa fa-underline EditorToolbarButtonTextMedium'
-				},
-				formatKey: 'underline',
-				formatValue: 'toggle',
-				formatValues: [],
-				formatDirection: 'none'
+				content: { class: 'fa fa-underline EditorToolbarButtonTextMedium' },
+				formatKey: 'underline'
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Strikethrough',
-				content: {
-					class: 'fa fa-strikethrough EditorToolbarButtonTextMedium'
-				},
-				formatKey: 'strike',
-				formatValue: 'toggle',
-				formatValues: [],
-				formatDirection: 'none'
+				content: { class: 'fa fa-strikethrough EditorToolbarButtonTextMedium' },
+				formatKey: 'strike'
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Inline-code',
-				content: {
-					class: 'fa fa-code EditorToolbarButtonTextMedium'
-				},
-				formatKey: 'code',
-				formatValue: 'toggle',
-				formatValues: [],
-				formatDirection: 'none'
+				content: { class: 'fa fa-code EditorToolbarButtonTextMedium' },
+				formatKey: 'code'
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Highlight',
-				content: {
-					class: 'fa fa-square-o EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-square-o EditorToolbarButtonTextMedium' },
 				formatKey: 'background',
-				formatValue: '#ffff00',
-				formatValues: [],
-				formatDirection: 'none'
+				formatValue: '#ffff00'
 			},
+			{ type: 'divider' },
 			{
-				type: 'divider'
-			},
-			{
-				type: 'button',
+				type: 'define',
 				title: 'Align Left',
-				content: {
-					class: 'fa fa-align-left EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-align-left EditorToolbarButtonTextMedium' },
 				formatForceLine: true,
 				formatKey: 'align',
-				formatValue: '',
-				formatValues: [],
-				formatDirection: 'none'
+				formatValue: ''
 			},
 			{
-				type: 'button',
+				type: 'define',
 				title: 'Align Center',
-				content: {
-					class: 'fa fa-align-center EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-align-center EditorToolbarButtonTextMedium' },
 				formatForceLine: true,
 				formatKey: 'align',
-				formatValue: 'center',
-				formatValues: [],
-				formatDirection: 'none'
+				formatValue: 'center'
 			},
 			{
-				type: 'button',
+				type: 'define',
 				title: 'Align Right',
-				content: {
-					class: 'fa fa-align-right EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-align-right EditorToolbarButtonTextMedium' },
 				formatForceLine: true,
 				formatKey: 'align',
-				formatValue: 'right',
-				formatValues: [],
-				formatDirection: 'none'
+				formatValue: 'right'
 			},
+			{ type: 'divider' },
 			{
-				type: 'divider'
-			},
-			{
-				type: 'button',
+				type: 'switchNext',
 				title: 'Indent',
-				content: {
-					class: 'fa fa-indent EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-indent EditorToolbarButtonTextMedium' },
 				formatKey: 'indent',
-				formatValue: '',
-				formatValues: ['1', '2', '3', '4'],
-				formatDirection: 'next'
+				formatValues: ['1', '2', '3', '4']
 			},
+			{ type: 'divider' },
 			{
-				type: 'divider'
-			},
-			{
-				type: 'button',
+				type: 'toggle',
 				title: 'List Ordered',
-				content: {
-					class: 'fa fa-list-ol EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-list-ol EditorToolbarButtonTextMedium' },
 				formatKey: 'list',
 				formatValue: 'ordered',
-				formatValues: '',
-				formatDirection: 'none'
+				formatForceLine: true
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'List Bullet',
-				content: {
-					class: 'fa fa-list-ul EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-list-ul EditorToolbarButtonTextMedium' },
 				formatKey: 'list',
 				formatValue: 'bullet',
-				formatValues: '',
-				formatDirection: 'none'
+				formatForceLine: true
 			},
+			{ type: 'divider' },
 			{
-				type: 'divider'
-			},
-			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Blockquote',
-				content: {
-					class: 'fa fa-quote-right EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-quote-right EditorToolbarButtonTextMedium' },
 				formatKey: 'blockquote',
-				formatValue: 'toggle',
-				formatForceLine: true,
-				formatValues: '',
-				formatDirection: 'none'
+				formatForceLine: true
 			},
 			{
-				type: 'button',
+				type: 'toggle',
 				title: 'Block-code',
-				content: {
-					class: 'fa fa fa-file-code-o EditorToolbarButtonTextMedium'
-				},
+				content: { class: 'fa fa-file-code-o EditorToolbarButtonTextMedium' },
 				formatKey: 'code-block',
-				formatValue: 'toggle',
-				formatForceLine: true,
-				formatValues: '',
-				formatDirection: 'none'
+				formatForceLine: true
+			},
+			{ type: 'divider' },
+			{
+				type: 'action',
+				title: 'Link',
+				content: { class: 'fa fa-link EditorToolbarButtonTextMedium' },
+				formatKey: 'link'
 			}
 		]
 	}
@@ -23980,10 +23929,8 @@ var Vue2Editor = function (element, options) {
 	templateHTML		   += 			'<div class="EditorToolbar">'
 	templateHTML		   += 				'<div>'
 	templateHTML		   += 					'<div v-for="toolbarItem in toolbarItems">'
-	templateHTML		   += 						'<button v-if="toolbarItem.type===\'button\'" v-bind:uk-tooltip="css == \'uikit\'" v-bind:class="{Active: (selectionFormats[toolbarItem.formatKey] && (selectionFormats[toolbarItem.formatKey] === toolbarItem.formatValue || selectionFormats[toolbarItem.formatKey] == true) || (toolbarItem.formatValue == \'\' && !selectionFormats[toolbarItem.formatKey] && (!toolbarItem.formatValues || !toolbarItem.formatValues.length)) || (selectionFormats[toolbarItem.formatKey] && toolbarItem.formatValues && toolbarItem.formatValues.length)) }" v-on:click="onToolbarButtonSelected" type="button" :format-key="toolbarItem.formatKey" :format-value="toolbarItem.formatValue" :format-direction="toolbarItem.formatDirection" :format-values="toolbarItem.formatValues" :format-force-line="toolbarItem.formatForceLine" v-bind:title="toolbarItem.title" class="EditorToolbarButton">'
-	templateHTML 		   += 							'<span v-bind:class="toolbarItem.content.class">'
-	templateHTML		   += 								'<span v-if="toolbarItem.content.text">{{ toolbarItem.content.text }}</span>'
-	templateHTML 		   += 							'</span>'
+	templateHTML		   += 						'<button type="button" v-on:click="onToolbarButtonSelected" v-if="toolbarItem.type!==\'divider\'" :uk-tooltip="css == \'uikit\'" :class="{Active: ((toolbarItem.type === \'toggle\' && selectionFormats[toolbarItem.formatKey]) || (toolbarItem.type === \'define\' && !selectionFormats[toolbarItem.formatKey] && !toolbarItem.formatValue) || (toolbarItem.type === \'define\' && selectionFormats[toolbarItem.formatKey] && selectionFormats[toolbarItem.formatKey] == toolbarItem.formatValue) || ((toolbarItem.type === \'switchNext\' || toolbarItem.type === \'switchPrev\') && selectionFormats[toolbarItem.formatKey]))}" :format-type="toolbarItem.type" :format-key="toolbarItem.formatKey" :format-value="toolbarItem.formatValue" :format-direction="toolbarItem.formatDirection" :format-values="toolbarItem.formatValues" :format-force-line="toolbarItem.formatForceLine" v-bind:title="toolbarItem.title" class="EditorToolbarButton">'
+	templateHTML 		   += 							'<span v-bind:class="toolbarItem.content.class"></span><strong v-bind:class="toolbarItem.content.class" v-if="toolbarItem.content.text">{{ toolbarItem.content.text }}</strong>'
 	templateHTML 		   += 						'</button>'
 	templateHTML		   += 						'<span v-if="toolbarItem.type === \'divider\'" class="EditorToolbarDivider"></span>'
 	templateHTML		   += 					'</div>'
@@ -24016,6 +23963,7 @@ var Vue2Editor = function (element, options) {
 				if (buttonItem.tagName !== 'BUTTON') { buttonItem = buttonItem.parentElement }
 				if (buttonItem.tagName !== 'BUTTON') { return }
 
+				var formatType = buttonItem.getAttribute('format-type')
 				var formatKey = buttonItem.getAttribute('format-key')
 				var formatValue = buttonItem.getAttribute('format-value')
 				var formatValues = buttonItem.getAttribute('format-values')
@@ -24024,20 +23972,18 @@ var Vue2Editor = function (element, options) {
 				if (typeof formatKey !== 'string') { return }
 
 				// switch between values
-				if (formatValues && formatDirection && formatDirection !== 'none') {
+				if (formatType === 'switchNext' || formatType === 'switchPrev') {
 					if (typeof formatValues == 'string') { formatValues = formatValues.split(',') }
 					if (formatValues.length <= 0) { return }
-					if (typeof this.selectionFormats[formatKey] !== 'undefined') {
+					if (this.selectionFormats[formatKey] ) {
 						var indexOfCurrentValue = formatValues.indexOf(String(this.selectionFormats[formatKey]))
-						if (formatDirection === 'next' && (indexOfCurrentValue + 1) < (formatValues.length - 1)) {
-							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue + 1])
-						} else if (formatDirection === 'prev' && (indexOfCurrentValue - 1) >= 0) {
-							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue - 1])
+						if (formatType === 'switchNext') {
+							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue + 1] || 0)
 						} else {
-							CoreEditor.formatLine(this.selectionRange, formatKey, '')
+							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue - 1] || 0)
 						}
 					} else {
-						if (formatDirection === 'next') {
+						if (formatType === 'switchNext') {
 							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[0])
 						} else {
 							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[formatValues.length - 1])
@@ -24046,7 +23992,7 @@ var Vue2Editor = function (element, options) {
 				}
 
 				// toggle boolean
-				else {
+				else if (formatType === 'toggle') {
 					if (typeof this.selectionFormats[formatKey] !== 'undefined' && this.selectionFormats[formatKey]) {
 						if (formatForceLine) {
 							CoreEditor.formatLine(this.selectionRange, formatKey, '')
@@ -24059,6 +24005,15 @@ var Vue2Editor = function (element, options) {
 						} else {
 							CoreEditor.formatText(this.selectionRange, formatKey, formatValue || true)
 						}
+					}
+				}
+
+				// define value
+				else if (formatType === 'define') {
+					if (formatForceLine) {
+						CoreEditor.formatLine(this.selectionRange, formatKey, formatValue)
+					} else {
+						CoreEditor.formatText(this.selectionRange, formatKey, formatValue)
 					}
 				}
 

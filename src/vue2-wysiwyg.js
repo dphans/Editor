@@ -37,10 +37,8 @@ var Vue2Editor = function (element, options) {
 	templateHTML		   += 			'<div class="EditorToolbar">'
 	templateHTML		   += 				'<div>'
 	templateHTML		   += 					'<div v-for="toolbarItem in toolbarItems">'
-	templateHTML		   += 						'<button v-if="toolbarItem.type===\'button\'" v-bind:uk-tooltip="css == \'uikit\'" v-bind:class="{Active: (selectionFormats[toolbarItem.formatKey] && (selectionFormats[toolbarItem.formatKey] === toolbarItem.formatValue || selectionFormats[toolbarItem.formatKey] == true) || (toolbarItem.formatValue == \'\' && !selectionFormats[toolbarItem.formatKey] && (!toolbarItem.formatValues || !toolbarItem.formatValues.length)) || (selectionFormats[toolbarItem.formatKey] && toolbarItem.formatValues && toolbarItem.formatValues.length)) }" v-on:click="onToolbarButtonSelected" type="button" :format-key="toolbarItem.formatKey" :format-value="toolbarItem.formatValue" :format-direction="toolbarItem.formatDirection" :format-values="toolbarItem.formatValues" :format-force-line="toolbarItem.formatForceLine" v-bind:title="toolbarItem.title" class="EditorToolbarButton">'
-	templateHTML 		   += 							'<span v-bind:class="toolbarItem.content.class">'
-	templateHTML		   += 								'<span v-if="toolbarItem.content.text">{{ toolbarItem.content.text }}</span>'
-	templateHTML 		   += 							'</span>'
+	templateHTML		   += 						'<button type="button" v-on:click="onToolbarButtonSelected" v-if="toolbarItem.type!==\'divider\'" :uk-tooltip="css == \'uikit\'" :class="{Active: ((toolbarItem.type === \'toggle\' && selectionFormats[toolbarItem.formatKey]) || (toolbarItem.type === \'define\' && !selectionFormats[toolbarItem.formatKey] && !toolbarItem.formatValue) || (toolbarItem.type === \'define\' && selectionFormats[toolbarItem.formatKey] && selectionFormats[toolbarItem.formatKey] == toolbarItem.formatValue) || ((toolbarItem.type === \'switchNext\' || toolbarItem.type === \'switchPrev\') && selectionFormats[toolbarItem.formatKey]))}" :format-type="toolbarItem.type" :format-key="toolbarItem.formatKey" :format-value="toolbarItem.formatValue" :format-direction="toolbarItem.formatDirection" :format-values="toolbarItem.formatValues" :format-force-line="toolbarItem.formatForceLine" v-bind:title="toolbarItem.title" class="EditorToolbarButton">'
+	templateHTML 		   += 							'<span v-bind:class="toolbarItem.content.class"></span><strong v-bind:class="toolbarItem.content.class" v-if="toolbarItem.content.text">{{ toolbarItem.content.text }}</strong>'
 	templateHTML 		   += 						'</button>'
 	templateHTML		   += 						'<span v-if="toolbarItem.type === \'divider\'" class="EditorToolbarDivider"></span>'
 	templateHTML		   += 					'</div>'
@@ -73,6 +71,7 @@ var Vue2Editor = function (element, options) {
 				if (buttonItem.tagName !== 'BUTTON') { buttonItem = buttonItem.parentElement }
 				if (buttonItem.tagName !== 'BUTTON') { return }
 
+				var formatType = buttonItem.getAttribute('format-type')
 				var formatKey = buttonItem.getAttribute('format-key')
 				var formatValue = buttonItem.getAttribute('format-value')
 				var formatValues = buttonItem.getAttribute('format-values')
@@ -81,20 +80,18 @@ var Vue2Editor = function (element, options) {
 				if (typeof formatKey !== 'string') { return }
 
 				// switch between values
-				if (formatValues && formatDirection && formatDirection !== 'none') {
+				if (formatType === 'switchNext' || formatType === 'switchPrev') {
 					if (typeof formatValues == 'string') { formatValues = formatValues.split(',') }
 					if (formatValues.length <= 0) { return }
-					if (typeof this.selectionFormats[formatKey] !== 'undefined') {
+					if (this.selectionFormats[formatKey] ) {
 						var indexOfCurrentValue = formatValues.indexOf(String(this.selectionFormats[formatKey]))
-						if (formatDirection === 'next' && (indexOfCurrentValue + 1) < (formatValues.length - 1)) {
-							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue + 1])
-						} else if (formatDirection === 'prev' && (indexOfCurrentValue - 1) >= 0) {
-							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue - 1])
+						if (formatType === 'switchNext') {
+							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue + 1] || 0)
 						} else {
-							CoreEditor.formatLine(this.selectionRange, formatKey, '')
+							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[indexOfCurrentValue - 1] || 0)
 						}
 					} else {
-						if (formatDirection === 'next') {
+						if (formatType === 'switchNext') {
 							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[0])
 						} else {
 							CoreEditor.formatLine(this.selectionRange, formatKey, formatValues[formatValues.length - 1])
@@ -103,7 +100,7 @@ var Vue2Editor = function (element, options) {
 				}
 
 				// toggle boolean
-				else {
+				else if (formatType === 'toggle') {
 					if (typeof this.selectionFormats[formatKey] !== 'undefined' && this.selectionFormats[formatKey]) {
 						if (formatForceLine) {
 							CoreEditor.formatLine(this.selectionRange, formatKey, '')
@@ -116,6 +113,15 @@ var Vue2Editor = function (element, options) {
 						} else {
 							CoreEditor.formatText(this.selectionRange, formatKey, formatValue || true)
 						}
+					}
+				}
+
+				// define value
+				else if (formatType === 'define') {
+					if (formatForceLine) {
+						CoreEditor.formatLine(this.selectionRange, formatKey, formatValue)
+					} else {
+						CoreEditor.formatText(this.selectionRange, formatKey, formatValue)
 					}
 				}
 

@@ -12,16 +12,11 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.21/js/uikit-icons.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 	<script type="text/javascript" src="/dist/js/vue2-wysiwyg.js"></script>
-	<style type="text/css">
-		.MainEditor {
-			background-color: #000;
-			width: 100%;
-			height: 500px;
-		}
-	</style>
 </head>
 <body onload="window.initEditor();">
-	<div id="MainEditor" class="MainEditor"></div>
+	<div class="uk-container uk-position-cover uk-overflow-hidden">
+		<div id="MainEditor" class="uk-width-1-1 uk-height-1-1"></div>
+	</div>
 	<script type="text/javascript">
 		window.initEditor = function () {
 			window.mainEditor = new Editor('MainEditor', {});
