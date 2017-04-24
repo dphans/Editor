@@ -12,7 +12,7 @@ A simple WYSIWYG RichText editor Javascript library.
 ## Getting started
 Get familiar with the basic setup and overview of Editor.
 
-**1. HTML markup
+**HTML markup**
 ```html
 <!DOCTYPE html>
 <html>
@@ -50,3 +50,11 @@ Just import UIkit framework into your html document. Editor will detect and auto
 
 ## Browser support
 Editor will work on pretty much any modern browser: IE 10+, Safari 7+, Edge, Firefox, Chrome, Opera.
+
+## Contact support
+Questions are welcome! Any questions or issues I will try to fix it and reply your requests by tags, before opening a new issue, please double-check that someone hasn't asked before.
+
+For quick support, please contact me via:
+- [Facebook](http://facebook.com/dinophanhk)
+- Email: baophan94@icloud.com
+
