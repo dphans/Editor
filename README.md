@@ -7,7 +7,7 @@ A javascript library for editing RichText
 
 ```html
 <link rel="stylesheet" type="text/css" href="path/to/css/vue2-wysiwyg.min.css">
-<script type="text/javascript" src="path/to/js/vue2-wysiwyg.js"></script>
+<script type="text/javascript" src="path/to/js/vue2-wysiwyg.min.js"></script>
 ```
 
 Editor using *fontawesome* to display icons into toolbar, so you need to import fontawesome in header
