@@ -30,8 +30,8 @@ Get familiar with the basic setup and overview of Editor.
         <link rel="stylesheet" type="text/css" href="path/to/highlightjs/css/styles/xcode.min.css">
         <script type="text/javascript" src="path/to/highlightjs/js/highlight.min.js"></script>
         
-        <link rel="stylesheet" type="text/css" href="path/to/css/vue2-wysiwyg.min.css">
-        <script type="text/javascript" src="path/to/js/vue2-wysiwyg.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/dist/css/vue2-wysiwyg.min.css">
+        <script type="text/javascript" src="/dist/js/vue2-wysiwyg.min.js"></script>
     </head>
     <body>
         <div id="YourEditorPlaceId"></div>
