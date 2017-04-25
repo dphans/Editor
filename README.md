@@ -1,6 +1,7 @@
 # Editor
 A simple WYSIWYG RichText editor Javascript library.
-[Demo](https://dphans.github.io/Editor/demo/)
+- [Demo](https://dphans.github.io/Editor/demo/)
+- This is part of [TekTalk community](https://www.facebook.com/tektalkcommunity/).
 
 
 ## Features
@@ -12,6 +13,23 @@ A simple WYSIWYG RichText editor Javascript library.
 
 ## Getting started
 Get familiar with the basic setup and overview of Editor.
+
+**Installation**
+
+*Install via **bower**:*
+
+```bash
+bower install --save V2Editor
+```
+
+*Custom build using **grunt***
+```bash
+git clone https://github.com/dphans/Editor.git Editor
+cd Editor
+grunt
+grunt connect
+```
+Open localhost with port `5000` for testing editor. Or using `grunt watch` to view updates while editing source code. **Don't forgot help me to fix bugs and improve Editor 🤗**
 
 **HTML markup**
 ```html
