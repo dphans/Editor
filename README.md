@@ -1,6 +1,7 @@
 # Editor
 A simple WYSIWYG RichText editor Javascript library.
-[Demo](https://dphans.github.io/Editor/demo/)
+- [Demo](https://dphans.github.io/Editor/demo/)
+- This is part of [TekTalk community](https://www.facebook.com/tektalkcommunity/).
 
 
 ## Features
