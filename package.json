@@ -1,7 +1,7 @@
 {
-  "name": "vue2-wysiwyg",
-  "version": "1.0.0",
-  "description": "A richtext editor component for vuejs2",
+  "name": "v2editor",
+  "version": "1.0.1",
+  "description": "A wysiwyg richtext editor",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
