@@ -14,8 +14,15 @@
 	<script type="text/javascript" src="./dist/js/v2editor.js"></script>
 </head>
 <body onload="window.initEditor();">
-	<div class="uk-container uk-position-cover uk-overflow-hidden">
-		<div id="MainEditor" class="uk-width-1-1 uk-height-1-1"></div>
+	<div class="uk-position-center uk-width-1-2 uk-height-large">
+		<div class="uk-text-center uk-article uk-padding-small uk-flex uk-flex-column" style="font-weight: 300;">
+			<span class="uk-article-title">Editor</span>
+			<span>Simple &amp; Modern RichText Editor</span>
+		</div>
+		<div id="MainEditor" class="uk-card uk-card-default uk-card-body uk-padding-small uk-height-medium"></div>
+		<div class="uk-text-center uk-text-small uk-text-muted">
+			<p class="uk-padding">fork me on <a href="https://github.com/dphans/Editor" target="_blank">Github</a></p>
+		</div>
 	</div>
 	<script type="text/javascript">
 		window.initEditor = function () {
