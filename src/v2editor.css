@@ -104,11 +104,13 @@ div.EditorInsertContainer {
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	padding: 16px;
+	margin: 32px;
 }
 
 div.EditorInsertContainer:hover > div.EditorInsertContents {
 	opacity: 1;
+	height: inherit;
+	padding: 16px 0px 16px 8px;
 }
 
 div.EditorInsertContainer:hover > button.EditorInsertButton > span {
@@ -116,16 +118,19 @@ div.EditorInsertContainer:hover > button.EditorInsertButton > span {
 	-moz-transform: rotate(45deg);  
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=5);
 	-o-transform: rotate(45deg);
-	transition-duration: .2s;
-	-webkit-transition-duration: .2s;
-	-moz-transition-duration: .2s;
-	-o-transition-duration: .2s;
+	transition-duration: .4s;
+	-webkit-transition-duration: .4s;
+	-moz-transition-duration: .4s;
+	-o-transition-duration: .4s;
 }
 
 div.EditorInsertContents {
 	opacity: 0;
+	height: 0px;
+	overflow-y: hidden;
+	background-color: transparent;
 	width: 100%;
-	padding: 16px 0px 16px 8px;
+	padding: 0px;
 	transition-duration: .2s;
 	-webkit-transition-duration: .2s;
 	-moz-transition-duration: .2s;

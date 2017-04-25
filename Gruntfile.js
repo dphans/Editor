@@ -89,6 +89,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', [ 'browserify', 'uglify', 'cssmin', 'copy' ]);
+  grunt.registerTask('default', [ 'browserify', 'uglify', 'cssmin', 'copy', 'watch' ]);
 
 };
