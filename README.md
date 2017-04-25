@@ -1,4 +1,4 @@
-# V2Editor
+# Editor
 A simple WYSIWYG RichText editor Javascript library.
 
 
