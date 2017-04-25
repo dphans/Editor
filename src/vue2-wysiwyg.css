@@ -99,6 +99,81 @@ button.EditorToolbarButton:focus {
 }
 
 
+/*Insert View*/
+div.EditorInsertContainer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 16px;
+}
+
+div.EditorInsertContainer:hover > div.EditorInsertContents {
+	opacity: 1;
+}
+
+div.EditorInsertContainer:hover > button.EditorInsertButton > span {
+	-webkit-transform: rotate(45deg); 
+	-moz-transform: rotate(45deg);  
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=5);
+	-o-transform: rotate(45deg);
+	transition-duration: .2s;
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-o-transition-duration: .2s;
+}
+
+div.EditorInsertContents {
+	opacity: 0;
+	width: 100%;
+	padding: 16px 0px 16px 8px;
+	transition-duration: .2s;
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-o-transition-duration: .2s;
+}
+
+button.EditorInsertButton {
+	width: 48px;
+	height: 48px;
+	color: #000;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 50%;
+}
+
+button.EditorInsertButton > span {
+	transition-duration: .2s;
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-o-transition-duration: .2s;
+}
+
+button.EditorInsertButton:focus {
+	outline: none;
+}
+
+button.EditorInsertButtonItem {
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin-top: 8px;
+	cursor: pointer;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #333;
+	border-radius: 50%;
+}
+
+button.EditorInsertButtonItem:hover {
+	color: #eee;
+	background-color: #000;
+}
+
+button.EditorInsertButtonItem:focus {
+	outline: none;
+}
+
+
 /*Editor View*/
 .Editor {
 	position: relative;

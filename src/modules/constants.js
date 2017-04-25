@@ -6,6 +6,20 @@ module.exports = {
 		}
 	},
 	defaultOptions: {
+		editorInsertItems: [
+			{
+				type: 'action',
+				title: 'Upload photo',
+				content: { class: 'fa fa-upload' },
+				actionName: 'uploadPhoto'
+			},
+			{
+				type: 'action',
+				title: 'Insert media',
+				content: { class: 'fa fa-film' },
+				actionName: 'insertMedia'
+			}
+		],
 		editorToolbarItems: [
 			{
 				type: 'define',

@@ -47,6 +47,17 @@ var Vue2Editor = function (element, options) {
 	templateHTML		   += 			'<div class="Editor">'
 	templateHTML		   += 				'<div id="' + this.elementId + 'Composer"></div>'
 	templateHTML		   += 			'</div>'
+	templateHTML		   += 			'<div class="EditorInsertContainer">'
+	templateHTML 		   +=  				'<div class="EditorInsertContents">'
+	templateHTML 		   +=  					'<button v-for="insertButtonItem in insertButtonItems" v-on:click="onInsertButtonItemSelected" type="button" class="EditorInsertButtonItem" :uk-tooltip="(css===\'uikit\' ? \'pos:left;\' : false)" :insert-type="insertButtonItem.type" :title="insertButtonItem.title" :action-name="insertButtonItem.actionName">'
+	templateHTML 		   += 						'<span v-bind:class="insertButtonItem.content.class">{{ insertButtonItem.content.text }}</span>'
+	templateHTML 		   += 					'</button>'
+	templateHTML 		   +=  				'</div>'
+	templateHTML		   += 				'<button type="button" class="EditorInsertButton">'
+	templateHTML 		   += 					'<span v-if="css===\'uikit\'" uk-icon="icon: plus;"></span>'
+	templateHTML 		   += 					'<span v-if="css!==\'uikit\'" class="fa fa-plus"></span>'
+	templateHTML 		   +=  				'</button>'
+	templateHTML		   += 			'</div>'
 	templateHTML		   += 		'</div>'
 	templateHTML		   += '</div>'
 	this.vue.container		= new Vue({
@@ -55,13 +66,9 @@ var Vue2Editor = function (element, options) {
 		data: {
 			css: (window.UIkit ? 'uikit' : null),
 			toolbarItems: this.options.editorToolbarItems,
+			insertButtonItems: this.options.editorInsertItems,
 			selectionRange: { index: 0, length: 0 },
 			selectionFormats: {}
-		},
-		watch: {
-			selectionRange: function () {
-				
-			}
 		},
 		methods: {
 			onToolbarButtonSelected: function (event) {
@@ -126,6 +133,14 @@ var Vue2Editor = function (element, options) {
 				}
 
 				HandlerMethods.updateSelectionFormats()
+			},
+			onInsertButtonItemSelected: function (event) {
+				if (event && typeof event.preventDefault === 'function') event.preventDefault()
+				if (!event.srcElement) { return }
+				var buttonItem = event.srcElement
+				if (buttonItem.tagName !== 'BUTTON') { buttonItem = buttonItem.parentElement }
+				if (buttonItem.tagName !== 'BUTTON') { return }
+				console.log(buttonItem);
 			}
 		}
 	})
