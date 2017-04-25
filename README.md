@@ -1,5 +1,6 @@
 # Editor
 A simple WYSIWYG RichText editor Javascript library.
+[Demo](https://dphans.github.io/Editor/demo/)
 
 
 ## Features
