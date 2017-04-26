@@ -56,7 +56,10 @@ Open localhost with port `5000` for testing editor. Or using `grunt watch` to vi
         <div id="YourEditorPlaceId"></div>
         <script type="text/javascript">
             $(function() {
-                new Editor('YourEditorPlaceId', {});
+                var editor = new Editor('YourEditorPlaceId', {});
+                editor.on('save', function(documentJSONData) {
+                    console.log(documentJSONData)
+                });
             })
         </script>
     </body>
