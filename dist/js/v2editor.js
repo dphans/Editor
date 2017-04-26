@@ -23684,11 +23684,17 @@ module.exports = {
 	},
 	defaultOptions: {
 		editorInsertItems: [
-			{
+			/*{
 				type: 'action',
 				title: 'Upload photo',
 				content: { class: 'fa fa-upload' },
 				actionName: 'uploadPhoto'
+			},*/
+			{
+				type: 'action',
+				title: 'Insert photo',
+				content: { class: 'fa fa-photo' },
+				actionName: 'insertPhotoURL'
 			},
 			{
 				type: 'action',
@@ -23698,6 +23704,13 @@ module.exports = {
 			}
 		],
 		editorToolbarItems: [
+			{
+				type: 'action',
+				title: 'Save',
+				content: { class: 'fa fa-save EditorToolbarButtonTextMedium' },
+				actionName: 'save'
+			},
+			{ type: 'divider' },
 			{
 				type: 'define',
 				title: 'Section',
@@ -23860,7 +23873,7 @@ module.exports = function () {
 }
 
 },{}],16:[function(require,module,exports){
-module.exports = function (Editor, CoreEditor) {
+module.exports 	= function (Editor, CoreEditor) {
 
 	return {
 
@@ -23897,6 +23910,68 @@ module.exports = function (Editor, CoreEditor) {
 			CoreEditor.on('selection-change', function (range, oldRange, source) {
 
 			})
+		},
+
+		checkAndInsertYoutubeVideo: function (videoURL, coreEditor) {
+			videoURL			= videoURL || ''
+			var youtubeRegx 	= /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
+			var youtubeIdMatch 	= videoURL.match(youtubeRegx)
+			var youtubeId		= (youtubeIdMatch && youtubeIdMatch[7].length == 11) ? youtubeIdMatch[7] : videoURL
+			if (!videoURL || videoURL === '') {
+				if (typeof window.UIkit !== 'undefined') { UIkit.modal.alert('Invalid Youtube URL or Id!') }
+				else { window.alert('Invalid Youtube URL or Id!') }
+				return
+			}
+			coreEditor.insertEmbed((coreEditor.getLength() - 1), 'video', 'https://www.youtube.com/embed/' + youtubeId, 'user')
+			coreEditor.formatLine((coreEditor.getLength() - 1), { align: 'center' }, 'user')
+		},
+
+		checkAndInsertPhotoURL: function (photoURL, coreEditor) {
+			photoURL			= photoURL || ''
+			if (!photoURL || photoURL === '') {
+				if (typeof window.UIkit !== 'undefined') { UIkit.modal.alert('Invalid photo URL!') }
+				else { window.alert('Invalid photo URL!') }
+				return
+			}
+
+			var imageURLRegx	= /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+			var imageURLMatch 	= photoURL.match(imageURLRegx)
+			if (imageURLMatch && imageURLMatch[0]) {
+				coreEditor.insertEmbed((coreEditor.getLength() - 1), 'image', imageURLMatch[0], 'user')
+				coreEditor.formatLine((coreEditor.getLength() - 1), { align: 'center' }, 'user')
+			} else {
+				if (typeof window.UIkit !== 'undefined') { UIkit.modal.alert('Invalid photo URL!') }
+				else { window.alert('Invalid photo URL!') }
+			}
+		},
+
+		userActions: {
+			save: function (handlerMethods, coreEditor, senderButtonItem) {
+
+			},
+			uploadPhoto: function (handlerMethods, coreEditor, senderButtonItem) {
+				
+			},
+			insertPhotoURL: function (handlerMethods, coreEditor, senderButtonItem) {
+				if (typeof window.UIkit !== 'undefined') {
+					UIkit.modal.prompt('Please enter photo URL', 'https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg')
+						.then(function (youtubeURL) {
+							handlerMethods.checkAndInsertPhotoURL(youtubeURL, coreEditor)
+						}, function () {})
+				} else {
+					handlerMethods.checkAndInsertPhotoURL(window.prompt('Please enter photo URL'), coreEditor)
+				}
+			},
+			insertMedia: function (handlerMethods, coreEditor, senderButtonItem) {
+				if (typeof window.UIkit !== 'undefined') {
+					UIkit.modal.prompt('Please enter Youtube video URL or ID', 'https://www.youtube.com/watch?v=JCfEKhsJrxE')
+						.then(function (youtubeURL) {
+							handlerMethods.checkAndInsertYoutubeVideo(youtubeURL, coreEditor)
+						}, function () {})
+				} else {
+					handlerMethods.checkAndInsertYoutubeVideo(window.prompt('Please enter Youtube video URL or ID'), coreEditor)
+				}
+			}
 		}
 
 	}
@@ -23943,7 +24018,7 @@ var Vue2Editor = function (element, options) {
 	templateHTML		   += 			'<div class="EditorToolbar">'
 	templateHTML		   += 				'<div>'
 	templateHTML		   += 					'<div v-for="toolbarItem in toolbarItems">'
-	templateHTML		   += 						'<button type="button" v-on:click="onToolbarButtonSelected" v-if="toolbarItem.type!==\'divider\'" :uk-tooltip="css == \'uikit\'" :class="{Active: ((toolbarItem.type === \'toggle\' && selectionFormats[toolbarItem.formatKey]) || (toolbarItem.type === \'define\' && !selectionFormats[toolbarItem.formatKey] && !toolbarItem.formatValue) || (toolbarItem.type === \'define\' && selectionFormats[toolbarItem.formatKey] && selectionFormats[toolbarItem.formatKey] == toolbarItem.formatValue) || ((toolbarItem.type === \'switchNext\' || toolbarItem.type === \'switchPrev\') && selectionFormats[toolbarItem.formatKey]))}" :format-type="toolbarItem.type" :format-key="toolbarItem.formatKey" :format-value="toolbarItem.formatValue" :format-direction="toolbarItem.formatDirection" :format-values="toolbarItem.formatValues" :format-force-line="toolbarItem.formatForceLine" v-bind:title="toolbarItem.title" class="EditorToolbarButton">'
+	templateHTML		   += 						'<button type="button" v-on:click="onToolbarButtonSelected" v-if="toolbarItem.type!==\'divider\'" :uk-tooltip="css == \'uikit\'" :class="{Active: ((toolbarItem.type === \'toggle\' && selectionFormats[toolbarItem.formatKey]) || (toolbarItem.type === \'define\' && !selectionFormats[toolbarItem.formatKey] && !toolbarItem.formatValue) || (toolbarItem.type === \'define\' && selectionFormats[toolbarItem.formatKey] && selectionFormats[toolbarItem.formatKey] == toolbarItem.formatValue) || ((toolbarItem.type === \'switchNext\' || toolbarItem.type === \'switchPrev\') && selectionFormats[toolbarItem.formatKey]))}" :format-type="toolbarItem.type" :action-name="toolbarItem.actionName" :format-key="toolbarItem.formatKey" :format-value="toolbarItem.formatValue" :format-direction="toolbarItem.formatDirection" :format-values="toolbarItem.formatValues" :format-force-line="toolbarItem.formatForceLine" v-bind:title="toolbarItem.title" class="EditorToolbarButton">'
 	templateHTML 		   += 							'<span v-bind:class="toolbarItem.content.class"></span><strong v-bind:class="toolbarItem.content.class" v-if="toolbarItem.content.text">{{ toolbarItem.content.text }}</strong>'
 	templateHTML 		   += 						'</button>'
 	templateHTML		   += 						'<span v-if="toolbarItem.type === \'divider\'" class="EditorToolbarDivider"></span>'
@@ -23976,6 +24051,9 @@ var Vue2Editor = function (element, options) {
 			selectionRange: { index: 0, length: 0 },
 			selectionFormats: {}
 		},
+		watch: {
+			
+		},
 		methods: {
 			onToolbarButtonSelected: function (event) {
 				if (event && typeof event.preventDefault === 'function') event.preventDefault()
@@ -23983,6 +24061,13 @@ var Vue2Editor = function (element, options) {
 				var buttonItem = event.srcElement
 				if (buttonItem.tagName !== 'BUTTON') { buttonItem = buttonItem.parentElement }
 				if (buttonItem.tagName !== 'BUTTON') { return }
+
+				if (buttonItem.getAttribute('action-name')) {
+					var actionName = buttonItem.getAttribute('action-name')
+					if (typeof HandlerMethods.userActions[actionName] !== 'function') { return }
+					HandlerMethods.userActions[actionName].call(this, HandlerMethods, CoreEditor, buttonItem)
+					return
+				}
 
 				var formatType = buttonItem.getAttribute('format-type')
 				var formatKey = buttonItem.getAttribute('format-key')
@@ -24046,7 +24131,10 @@ var Vue2Editor = function (element, options) {
 				var buttonItem = event.srcElement
 				if (buttonItem.tagName !== 'BUTTON') { buttonItem = buttonItem.parentElement }
 				if (buttonItem.tagName !== 'BUTTON') { return }
-				console.log(buttonItem);
+				var methodName	= buttonItem.getAttribute('action-name')
+				if (typeof methodName !== 'string') { return }
+				if (typeof HandlerMethods.userActions[methodName] !== 'function') { return }
+				HandlerMethods.userActions[methodName].call(this, HandlerMethods, CoreEditor, buttonItem)
 			}
 		}
 	})
@@ -24080,6 +24168,111 @@ var Vue2Editor = function (element, options) {
 Vue2Editor.prototype 		= {}
 Vue2Editor.prototype.constructor = Vue2Editor
 Vue2Editor.prototype.vue	= {}
+
+Vue2Editor.prototype.importJSON = function (jsonData) {
+	jsonData 			= jsonData || []
+
+	if (typeof jsonData === 'string') {
+		try {
+			jsonData 	= JSON.parse(jsonData)
+		} catch (jsonParseException) {
+			console.log(jsonParseException)
+			jsonData 	= []
+		}
+	}
+	
+	var contentsDelta 	= []
+	jsonData.forEach(function (line) {
+		var lineFormats = line.lineFormats
+		var lineContent = line.lineContents
+		lineContent.forEach(function (paragraph) {
+			switch (paragraph.content.type) {
+				case 'image':
+					contentsDelta.push({
+						insert: {
+							image: paragraph.content.data
+						},
+						attributes: paragraph.formats
+					})
+					break
+				case 'video':
+					contentsDelta.push({
+						insert: {
+							video: paragraph.content.data
+						},
+						attributes: paragraph.formats
+					})
+					break
+				default:
+					contentsDelta.push({
+						insert: paragraph.content.data,
+						attributes: paragraph.formats
+					})
+					break
+			}
+		})
+		contentsDelta.push({ insert: "\n", attributes: lineFormats })
+	})
+
+	CoreEditor.setContents(new QuillDelta(contentsDelta))
+}
+
+Vue2Editor.prototype.exportJSON = function () {
+	var jsonResult		= []
+	var contents 		= CoreEditor.getContents()
+	var lineContainer 	= []
+	contents.forEach(function (content) {
+		if (content.insert === '\n' || content.insert === '\n\n') {
+			jsonResult.push({
+				lineContents: lineContainer,
+				lineFormats: content.attributes || {}
+			})
+			lineContainer = []
+		} else {
+			if (typeof content.insert === 'string') {
+				lineContainer.push({
+					content: {
+						type: 'text',
+						data: content.insert
+					},
+					formats: content.attributes || {}
+				})
+			} else {
+				lineContainer.push({
+					content: {
+						type: Object.keys(content.insert)[0],
+						data: content.insert[Object.keys(content.insert)[0]]
+					},
+					formats: content.attributes || {}
+				})
+			}
+		}
+	})
+	if (lineContainer && lineContainer.length) {
+		jsonResult.push({
+			lineContents: lineContainer,
+			lineFormats: []
+		})
+	}
+	return jsonResult
+}
+
+/*
+Vue2Editor.prototype.exportHTML	= function () {
+	var elementId = ""
+	var possChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+	for (var index = 0; index < 10; index += 1) {
+		elementId += possChars.charAt(Math.floor(Math.random() * possChars.length))
+	}
+	var container 	= window.document.createElement('div')
+	container.id  	= elementId
+	var virtualQl 	= new Quill(container)
+	virtualQl.setContents(CoreEditor.getContents())
+	var htmlResult	= container.getElementsByClassName('ql-editor')[0].innerHTML
+	container.remove()
+	return htmlResult
+}
+*/
 
 window.Editor = Vue2Editor
 

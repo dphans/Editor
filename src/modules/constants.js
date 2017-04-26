@@ -7,11 +7,17 @@ module.exports = {
 	},
 	defaultOptions: {
 		editorInsertItems: [
-			{
+			/*{
 				type: 'action',
 				title: 'Upload photo',
 				content: { class: 'fa fa-upload' },
 				actionName: 'uploadPhoto'
+			},*/
+			{
+				type: 'action',
+				title: 'Insert photo',
+				content: { class: 'fa fa-photo' },
+				actionName: 'insertPhotoURL'
 			},
 			{
 				type: 'action',
@@ -21,6 +27,13 @@ module.exports = {
 			}
 		],
 		editorToolbarItems: [
+			{
+				type: 'action',
+				title: 'Save',
+				content: { class: 'fa fa-save EditorToolbarButtonTextMedium' },
+				actionName: 'save'
+			},
+			{ type: 'divider' },
 			{
 				type: 'define',
 				title: 'Section',

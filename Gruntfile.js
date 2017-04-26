@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'dist/css/<%= pkg.name %>.min.css': [ 'src/<%= pkg.name %>.css', 'node_modules/quill/dist/quill.core.css' ]
+          'dist/css/<%= pkg.name %>.min.css': [ 'src/<%= pkg.name %>.css' ]
         }
       }
     },
