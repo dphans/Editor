@@ -255,13 +255,23 @@ Vue2Editor.prototype.exportJSON = function () {
 			lineContainer = []
 		} else {
 			if (typeof content.insert === 'string') {
-				lineContainer.push({
-					content: {
-						type: 'text',
-						data: content.insert
-					},
-					formats: content.attributes || {}
-				})
+				if (content.attributes && content.attributes.link) {
+					lineContainer.push({
+						content: {
+							type: 'link',
+							data: content.insert
+						},
+						formats: content.attributes || {}
+					})
+				} else {
+					lineContainer.push({
+						content: {
+							type: 'text',
+							data: content.insert
+						},
+						formats: content.attributes || {}
+					})
+				}
 			} else {
 				lineContainer.push({
 					content: {
