@@ -1,5 +1,10 @@
 module.exports = {
 	debug: true,
+	events: {
+		save: function (jsonContent) {
+			
+		}
+	},
 	overrideOptions: {
 		modules: {
 			syntax: true

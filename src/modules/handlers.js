@@ -1,4 +1,4 @@
-module.exports 	= function (Editor, CoreEditor) {
+module.exports 	= function (Editor, CoreEditor, Constants) {
 
 	return {
 
@@ -72,7 +72,9 @@ module.exports 	= function (Editor, CoreEditor) {
 
 		userActions: {
 			save: function (handlerMethods, coreEditor, senderButtonItem) {
-
+				if (typeof Constants.events.save === 'function') {
+					Constants.events.save.call(this, Editor.exportJSON())
+				}
 			},
 			uploadPhoto: function (handlerMethods, coreEditor, senderButtonItem) {
 				

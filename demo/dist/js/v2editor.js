@@ -23677,6 +23677,11 @@ return Vue$3;
 },{}],14:[function(require,module,exports){
 module.exports = {
 	debug: true,
+	events: {
+		save: function (jsonContent) {
+			
+		}
+	},
 	overrideOptions: {
 		modules: {
 			syntax: true
@@ -23873,7 +23878,7 @@ module.exports = function () {
 }
 
 },{}],16:[function(require,module,exports){
-module.exports 	= function (Editor, CoreEditor) {
+module.exports 	= function (Editor, CoreEditor, Constants) {
 
 	return {
 
@@ -23947,7 +23952,9 @@ module.exports 	= function (Editor, CoreEditor) {
 
 		userActions: {
 			save: function (handlerMethods, coreEditor, senderButtonItem) {
-
+				if (typeof Constants.events.save === 'function') {
+					Constants.events.save.call(this, Editor.exportJSON())
+				}
 			},
 			uploadPhoto: function (handlerMethods, coreEditor, senderButtonItem) {
 				
@@ -24155,7 +24162,7 @@ var Vue2Editor = function (element, options) {
 	}
 
 	CoreEditor 		= new Quill(document.getElementById(this.elementId + 'Composer'), this.options || {})
-	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor)
+	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor, Constants)
 	HandlerMethods.handleCoreEditorEvents()
 
 	if (Constants.debug === true) {
@@ -24168,6 +24175,12 @@ var Vue2Editor = function (element, options) {
 Vue2Editor.prototype 		= {}
 Vue2Editor.prototype.constructor = Vue2Editor
 Vue2Editor.prototype.vue	= {}
+
+Vue2Editor.prototype.on 	= function (eventName, callback) {
+	if (typeof eventName !== 'string' && typeof callback !== 'function') { return }
+	if (typeof Constants.events[eventName] !== 'function') { return }
+	Constants.events[eventName] = callback
+}
 
 Vue2Editor.prototype.importJSON = function (jsonData) {
 	jsonData 			= jsonData || []

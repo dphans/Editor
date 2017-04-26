@@ -174,7 +174,7 @@ var Vue2Editor = function (element, options) {
 	}
 
 	CoreEditor 		= new Quill(document.getElementById(this.elementId + 'Composer'), this.options || {})
-	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor)
+	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor, Constants)
 	HandlerMethods.handleCoreEditorEvents()
 
 	if (Constants.debug === true) {
@@ -187,6 +187,12 @@ var Vue2Editor = function (element, options) {
 Vue2Editor.prototype 		= {}
 Vue2Editor.prototype.constructor = Vue2Editor
 Vue2Editor.prototype.vue	= {}
+
+Vue2Editor.prototype.on 	= function (eventName, callback) {
+	if (typeof eventName !== 'string' && typeof callback !== 'function') { return }
+	if (typeof Constants.events[eventName] !== 'function') { return }
+	Constants.events[eventName] = callback
+}
 
 Vue2Editor.prototype.importJSON = function (jsonData) {
 	jsonData 			= jsonData || []

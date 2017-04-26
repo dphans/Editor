@@ -27,6 +27,10 @@
 	<script type="text/javascript">
 		window.initEditor = function () {
 			window.mainEditor = new Editor('MainEditor', {});
+			window.mainEditor.on('save', function (jsonData) {
+				console.log('onSave');
+				console.log(jsonData);
+			});
 		};
 	</script>
 	<script src="//localhost:35729/livereload.js"></script>
