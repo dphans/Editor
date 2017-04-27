@@ -23878,7 +23878,7 @@ module.exports = function () {
 }
 
 },{}],16:[function(require,module,exports){
-module.exports 	= function (Editor, CoreEditor, Constants) {
+module.exports 	= function (Editor, CoreEditor, Constants, QuillDelta) {
 
 	return {
 
@@ -23922,6 +23922,11 @@ module.exports 	= function (Editor, CoreEditor, Constants) {
 					Constants.events.save.call(this, Editor.exportJSON())
 				}
 			})
+
+			// clear format if user copy-paste content from other source
+			CoreEditor.clipboard.addMatcher(Node.ELEMENT_NODE, function(node, delta) {
+				return new QuillDelta().insert(node.innerText);
+			});
 		},
 
 		checkAndInsertYoutubeVideo: function (videoURL, coreEditor) {
@@ -24169,7 +24174,7 @@ var Vue2Editor = function (element, options) {
 	}
 
 	CoreEditor 		= new Quill(document.getElementById(this.elementId + 'Composer'), this.options || {})
-	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor, Constants)
+	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor, Constants, QuillDelta)
 	HandlerMethods.handleCoreEditorEvents()
 
 	if (Constants.debug === true) {

@@ -174,7 +174,7 @@ var Vue2Editor = function (element, options) {
 	}
 
 	CoreEditor 		= new Quill(document.getElementById(this.elementId + 'Composer'), this.options || {})
-	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor, Constants)
+	HandlerMethods 	= require('./modules/handlers')(this, CoreEditor, Constants, QuillDelta)
 	HandlerMethods.handleCoreEditorEvents()
 
 	if (Constants.debug === true) {

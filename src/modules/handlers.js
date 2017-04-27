@@ -1,4 +1,4 @@
-module.exports 	= function (Editor, CoreEditor, Constants) {
+module.exports 	= function (Editor, CoreEditor, Constants, QuillDelta) {
 
 	return {
 
@@ -42,6 +42,11 @@ module.exports 	= function (Editor, CoreEditor, Constants) {
 					Constants.events.save.call(this, Editor.exportJSON())
 				}
 			})
+
+			// clear format if user copy-paste content from other source
+			CoreEditor.clipboard.addMatcher(Node.ELEMENT_NODE, function(node, delta) {
+				return new QuillDelta().insert(node.innerText);
+			});
 		},
 
 		checkAndInsertYoutubeVideo: function (videoURL, coreEditor) {
