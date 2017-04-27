@@ -3,6 +3,9 @@ module.exports = {
 	events: {
 		save: function (jsonContent) {
 			
+		},
+		upload: function (fileUpload) {
+			
 		}
 	},
 	overrideOptions: {
@@ -12,12 +15,12 @@ module.exports = {
 	},
 	defaultOptions: {
 		editorInsertItems: [
-			/*{
+			{
 				type: 'action',
 				title: 'Upload photo',
 				content: { class: 'fa fa-upload' },
 				actionName: 'uploadPhoto'
-			},*/
+			},
 			{
 				type: 'action',
 				title: 'Insert photo',

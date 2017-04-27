@@ -23680,6 +23680,9 @@ module.exports = {
 	events: {
 		save: function (jsonContent) {
 			
+		},
+		upload: function (fileUpload) {
+			
 		}
 	},
 	overrideOptions: {
@@ -23689,12 +23692,12 @@ module.exports = {
 	},
 	defaultOptions: {
 		editorInsertItems: [
-			/*{
+			{
 				type: 'action',
 				title: 'Upload photo',
 				content: { class: 'fa fa-upload' },
 				actionName: 'uploadPhoto'
-			},*/
+			},
 			{
 				type: 'action',
 				title: 'Insert photo',
@@ -24192,6 +24195,17 @@ Vue2Editor.prototype.on 	= function (eventName, callback) {
 	if (typeof eventName !== 'string' && typeof callback !== 'function') { return }
 	if (typeof Constants.events[eventName] !== 'function') { return }
 	Constants.events[eventName] = callback
+	return this
+}
+
+Vue2Editor.prototype.insertPhoto = function (photoURL) {
+	HandlerMethods.checkAndInsertPhotoURL.call(this, photoURL, CoreEditor)
+	return this
+}
+
+Vue2Editor.prototype.insertYoutubeVideo = function (videoURL) {
+	HandlerMethods.checkAndInsertYoutubeVideo.call(this, videoURL, CoreEditor)
+	return this
 }
 
 Vue2Editor.prototype.importJSON = function (jsonData) {
@@ -24240,6 +24254,7 @@ Vue2Editor.prototype.importJSON = function (jsonData) {
 	})
 
 	CoreEditor.setContents(new QuillDelta(contentsDelta))
+	return this
 }
 
 Vue2Editor.prototype.exportJSON = function () {

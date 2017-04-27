@@ -27,10 +27,15 @@
 	<script type="text/javascript">
 		window.initEditor = function () {
 			window.mainEditor = new Editor('MainEditor', {});
-			window.mainEditor.on('save', function (jsonData) {
-				console.log('onSave');
-				console.log(JSON.stringify(jsonData));
-			});
+			window.mainEditor
+				.on('save', function (jsonData) {
+					console.log('onSave');
+					console.log(JSON.stringify(jsonData));
+				})
+				.on('upload', function (fileUpload) {
+					console.log('onUpload');
+					console.log(fileUpload);
+				});
 		};
 	</script>
 	<script src="//localhost:35729/livereload.js"></script>
