@@ -35,6 +35,13 @@ module.exports 	= function (Editor, CoreEditor, Constants) {
 			CoreEditor.on('selection-change', function (range, oldRange, source) {
 
 			})
+
+			// on shortkey
+			CoreEditor.keyboard.addBinding({ key: 'S', metaKey: true }, function (event) {
+				if (typeof Constants.events.save === 'function') {
+					Constants.events.save.call(this, Editor.exportJSON())
+				}
+			})
 		},
 
 		checkAndInsertYoutubeVideo: function (videoURL, coreEditor) {

@@ -29,7 +29,7 @@
 			window.mainEditor = new Editor('MainEditor', {});
 			window.mainEditor.on('save', function (jsonData) {
 				console.log('onSave');
-				console.log(jsonData);
+				console.log(JSON.stringify(jsonData));
 			});
 		};
 	</script>
