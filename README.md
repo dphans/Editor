@@ -9,6 +9,8 @@ A simple WYSIWYG RichText editor Javascript library.
 - Inline styles: Bold, Italic, Underline, StrikeThrough, Code, Highlight Text.
 - Format line styles: Section (H2), Sub-section (H3), BlockQuotes, BlockCode, List Ordered/Bullet, Indenting, Text Alignment.
 - Support formating code, can using with highlightjs and color styles.
+- Support insert photo, embed youtube video.
+- Support import/export (as JSON data).
 
 
 ## Getting started
